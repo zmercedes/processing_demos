@@ -1,0 +1,9 @@
+# directories
+/examples/
+/libraries/
+/modes/
+/templates/
+/tools/
+
+# mac stuff
+.DS_Store
