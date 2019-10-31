@@ -1,8 +1,8 @@
-
 class Player {
   
   private float x;
   private float y;
+  private float ground = 0;
   
   private float speedX;
   private float speedY;
@@ -11,11 +11,12 @@ class Player {
   private float wide = 30;
   private float tall = 50;
   
+  // player movement state
   private boolean jumping;
   private boolean forward;
   private boolean backward;
   
-  public Player() {
+  Player() {
     this.x = width/2;
     this.y = height/2;
     this.speedX = 4;
@@ -23,6 +24,8 @@ class Player {
     this.jumping = false;
     this.forward = false;
     this.backward = false;
+    this.jumpSpeed = -5;
+    this.ground = height-25;
   }
   
   public void move(){
@@ -30,7 +33,7 @@ class Player {
   
     if(y + 25 >= height){
       jumping = false;
-      y = height - 25;
+      y = ground;
     } else
       speedY += gravity;
       
@@ -48,7 +51,7 @@ class Player {
       
     if(keyPressed && key == ' ' && !jumping){
       jumping = true;
-      speedY = -3;
+      speedY = jumpSpeed;
     }
   }
   
@@ -61,6 +64,12 @@ class Player {
     switch(k){
       case 'a':
         this.backward = b;
+        break;
+      case 'A':
+        this.backward = b;
+        break;
+      case 'D':
+        this.forward = b;
         break;
       case 'd':
         this.forward = b;
