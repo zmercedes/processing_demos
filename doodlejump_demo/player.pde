@@ -2,6 +2,7 @@ class Player {
   
   private float x;
   private float y;
+  private float bottom;
   private float ground = 0;
   
   private float speedX;
@@ -25,15 +26,18 @@ class Player {
     this.forward = false;
     this.backward = false;
     this.jumpSpeed = -5;
-    this.ground = height-25;
+    this.ground = height-tall/2;
+    this.bottom = y + tall/2;
   }
   
   public void move(){
     y += speedY;
+    bottom = y + tall/2;
   
-    if(y + 25 >= height){
+    if(y >= ground){
       jumping = false;
       y = ground;
+      speedY = 0;
     } else
       speedY += gravity;
       
@@ -54,7 +58,6 @@ class Player {
       speedY = jumpSpeed;
     }
   }
-  
   
   public void display(){
     rect(x,y,wide,tall);
