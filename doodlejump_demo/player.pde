@@ -23,7 +23,7 @@ class Player {
   
   Player() {
     this.x = width/2;
-    this.y = height/2;
+    this.y = height-50;
     this.speedX = 4;
     this.speedY = 0;
     this.jumping = false;
@@ -36,6 +36,11 @@ class Player {
     this.top = y - tall/2;
     this.left = x - wide/2;
     this.right = x + wide/2;
+  }
+  
+  public void update() {
+    this.move();
+    this.display();
   }
   
   public void move(){
