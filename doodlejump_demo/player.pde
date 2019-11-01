@@ -3,6 +3,9 @@ class Player {
   private float x;
   private float y;
   private float bottom;
+  private float top;
+  private float left;
+  private float right;
   private float ground = 0;
   
   private float speedX;
@@ -16,6 +19,7 @@ class Player {
   private boolean jumping;
   private boolean forward;
   private boolean backward;
+  private boolean isFalling;
   
   Player() {
     this.x = width/2;
@@ -25,14 +29,22 @@ class Player {
     this.jumping = false;
     this.forward = false;
     this.backward = false;
+    this.isFalling = false;
     this.jumpSpeed = -5;
     this.ground = height-tall/2;
     this.bottom = y + tall/2;
+    this.top = y - tall/2;
+    this.left = x - wide/2;
+    this.right = x + wide/2;
   }
   
   public void move(){
     y += speedY;
     bottom = y + tall/2;
+    top = y - tall/2;
+    left = x - wide/2;
+    right = x + wide/2;
+    isFalling = speedY > 0;
   
     if(y >= ground){
       jumping = false;
