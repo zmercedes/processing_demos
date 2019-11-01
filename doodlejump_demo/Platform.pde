@@ -1,22 +1,33 @@
 class Platform {
   float x;
   float y;
+  float wide = 60;
+  float tall = 20;
+  float top;
+  float left;
+  float right;
   
   Platform(float _x, float _y){
     x = _x;
     y = _y;
+    top = y - tall/2;
+    left = x - wide/2;
+    right = x + wide/2;
   }
   
   void display(){
-    rect(x,y, 60,20);
-    //rect(x,y-10,60,1); 
+    rect(x,y, wide,tall);
   }
   
-  void collider(Player player){
-    if(player.bottom + 10 >= y && player.y <= y + 10 &&
-       player.x-15 <= x + 30 && player.x + 15 >= x - 30){
-      player.ground = y - 35;
+  boolean collider(Player player){
+    if(player.bottom >= top && player.top < y - player.tall &&
+       player.left <= right && player.right >= left &&
+       player.isFalling){
+      player.ground = top - player.tall/2;
+      return true;
     } else 
-      player.ground = height - 25;
+      player.ground = height - player.tall/2;
+      
+    return false;
   }
 }
