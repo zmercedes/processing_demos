@@ -1,37 +1,21 @@
 
-final float gravity = 0.166666;
+final float gravity = 0.3;
 
 Player player;
 
-ArrayList<Platform> platforms = new ArrayList<Platform>();
+PlatformManager platforms;
 
 void setup(){
   size(400,700);
   rectMode(CENTER);
   player = new Player();
-  float currentY = height;
-  for(int i = 0;i<10;i++){
-    float xPos = random(35,width-35);
-    float y = random(60,70);
-    currentY = currentY - y;
-    platforms.add(new Platform(xPos,currentY));
-  }
+  platforms = new PlatformManager(player);
 }
 
 void draw(){
   background(220);
   player.update();
-  platformsUpdate();
-}
-
-void platformsUpdate(){
-  for(Platform platform : platforms){
-    platform.display();
-  }
-  for(Platform platform : platforms){
-    if(platform.collider(player))
-      break;
-  }
+  platforms.update();
 }
 
 void keyPressed(){
