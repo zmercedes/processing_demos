@@ -2,17 +2,13 @@ class PlatformManager {
   
   ArrayList<Platform> platforms;
   Player player;
+  Platform current;
   
   PlatformManager(Player player){
     this.player = player;
     this.platforms = new ArrayList<Platform>();
-    float currentY = height;
-    while(currentY > 0){
-      float xPos = random(35,width-35);
-      float y = random(60,70);
-      currentY = currentY - y;
-      this.platforms.add(new Platform(xPos,currentY));
-    }
+    float xPos = random(20,width-20);
+    this.platforms.add(new Platform(xPos,height - 60));
   }
   
   void update() {
@@ -29,12 +25,19 @@ class PlatformManager {
       }
       platform.display();
     }
-    if(player.isFalling) detectCollision();
+    if(current != null){
+      if(!current.collider(player)) current = null;
+    } else{
+      detectCollision();
+    }
   }
   
   void detectCollision(){
     for(Platform platform : platforms){
-      if(platform.collider(player)) break;
+      if(platform.collider(player)){
+        current = platform;
+        break;
+      }
     }
   }
   
