@@ -19,6 +19,11 @@ class Platform {
     rect(x,y, wide,tall);
   }
   
+  void move(float speed) {
+    y += speed;
+    top = y - tall/2;
+  }
+  
   boolean collider(Player player){
     if(player.bottom >= top && player.top < y - player.tall &&
        player.left <= right && player.right >= left &&
