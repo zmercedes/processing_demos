@@ -58,6 +58,10 @@ class Player {
     } else
       speedY += gravity;
       
+    if(y <= height/2){
+      y = height/2;
+    }
+      
     if(x < -wide/2)
       x = width + wide/2;
       
@@ -69,11 +73,6 @@ class Player {
     
     if(this.backward)
       x -= speedX;
-      
-    if(keyPressed && key == ' ' && !jumping){
-      jumping = true;
-      speedY = jumpSpeed;
-    }
   }
   
   public void display(){
@@ -93,6 +92,12 @@ class Player {
         break;
       case 'd':
         this.forward = b;
+        break;
+      case ' ':
+        if(!jumping){
+          jumping = true;
+          speedY = jumpSpeed;
+        }
         break;
     }
   }
