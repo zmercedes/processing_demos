@@ -97,6 +97,7 @@ class Player {
         if(!jumping){
           jumping = true;
           speedY = jumpSpeed;
+          ground = height - tall/2;
         }
         break;
     }

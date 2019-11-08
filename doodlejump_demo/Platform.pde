@@ -30,9 +30,7 @@ class Platform {
        player.isFalling){
       player.ground = top - player.tall/2;
       return true;
-    } else 
-      player.ground = height - player.tall/2;
-      
+    } 
     return false;
   }
 }
