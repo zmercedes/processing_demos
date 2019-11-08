@@ -29,6 +29,10 @@ class PlatformManager {
       }
       platform.display();
     }
+    if(player.isFalling) detectCollision();
+  }
+  
+  void detectCollision(){
     for(Platform platform : platforms){
       if(platform.collider(player)) break;
     }
