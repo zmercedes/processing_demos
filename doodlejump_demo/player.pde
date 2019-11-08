@@ -30,7 +30,7 @@ class Player {
     this.forward = false;
     this.backward = false;
     this.isFalling = false;
-    this.jumpSpeed = -5;
+    this.jumpSpeed = -7;
     this.ground = height-tall/2;
     this.bottom = y + tall/2;
     this.top = y - tall/2;
