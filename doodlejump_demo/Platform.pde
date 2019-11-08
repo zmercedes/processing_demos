@@ -6,6 +6,7 @@ class Platform {
   float top;
   float left;
   float right;
+  boolean colliding = false;
   
   Platform(float _x, float _y){
     x = _x;
@@ -28,9 +29,16 @@ class Platform {
     if(player.bottom >= top && player.top < y - player.tall &&
        player.left <= right && player.right >= left &&
        player.isFalling){
+      colliding = true;
       player.ground = top - player.tall/2;
       return true;
-    } 
-    return false;
+    } else if(player.left > right || player.right < left 
+           || player.y < top - player.tall/2) {
+      colliding = false;
+      player.ground = height - player.tall/2;
+      return false;
+    }
+    
+    return colliding;
   }
 }
